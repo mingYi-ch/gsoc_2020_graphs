@@ -1,38 +1,41 @@
-# GSoC 2020: Evaluation
+# GSoC 2020: Proposed Solution for Evaluation
 
-This repository contains a small evaluation for the GSoC 2020 project, _Manipulation of massive astronomical data using graphs_. We propose a little set of tests related to basic graph problems. We will take into consideration the following points:
+This repository contains my solution to the GSoC 2020: Evaluation submission.
 
-- Completion of the exercises
-- Code quality (clarity, documentation, comments)
-- Suggestion for improvements
+## Prerequistes and Installation
 
-We would like also to evaluate your understanding of the Git workflow and code production. You are expected to create a repo on your GitHub account, and push the solutions to exercises to it through a series of Pull Request.
+### Install Python library
 
-## Before starting
+Python 3.6.5. The libraries required are `pandas`, `gremlin_python`, `numpy`
 
-You will need to install (local) the latest versions of [JanusGraph](https://janusgraph.org/), and [Apache HBase](http://hbase.apache.org/) (for the storage backend). 
+### Install docker
+Docker version 2.2.0.4(43472)
 
-JanusGraph can be queried from all languages for which a TinkerPop driver exists (using the Gremlin graph query language), and you are free to choose the programming language among Groovy, Python, or Scala.
+### Install Gremlin Client and Server
+Run Gremlin server and client in docker container.<br />
+```
+>> docker run -it -p 8182:8182 janusgraph/janusgraph
+```
 
-## Exercise 1: building the graph
+Following Commands are used to open a gremlin server console in terminal, but not required for running the python code<br />
+```
+>> docker container ls  
+>> docker exec -it [container-id] bash  
+>> bin/gremlin.sh   
+>> :remote connect tinkerpop.server conf/remote.yaml  
+>> :remote console 
+```
 
-The folder `data/` contains a CSV file with graph information. Each row is an entry of the graph, and there are three columns (string type) corresponding to vertices used to build the graph with the following relationships (edges): 
+Reference instruction [Gremlin\_docker\_install](https://docs.janusgraph.org/getting-started/installation/) 
+## Proposed Solution
+`query_result` file contains the output of the queries
 
-- `column2` -> `is` -> `column1`
-- `column3` -> `is` -> `column1`
-- `column2` -> `knows` -> `column3`
+### Solution 1: building the graph
 
-Exercice: build the graph based on the `data/alerts.csv` data.
+Run `01_data_loader.py` to load the data in csv file.
 
-## Exercise 2: manipulation of the graph
+### Solution 2: manipulation of the graph
+Run `02_queries.py` to print out the results of the queries.
 
-Query the graph to
-
-- compute the vertex degree (in, out, and overall),
-- find the longest chain in the graph,
-- count how many vertices are connected to ztf4 (in/out),
-- extract the sub-graph containing only vertices pointing to the vertex `unknown`.
-
-## Exercise 3: visualisation of the graph
-
-Display the graph using your favourite tool (you can easily play with [Gephi](https://gephi.org/) if you do not have one), and upload the picture on the repository.
+### Solution 3: visualisation of the graph
+The img floder contains the graph picture.

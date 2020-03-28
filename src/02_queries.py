@@ -87,7 +87,7 @@ def query_04(g, vertex_name = "unknown"):
     # extract the sub_graph
     sub_graph = g.withStrategies(SubgraphStrategy(vertices= __.has('point_unknown', 'true')))
 
-    print("The sub_graph object:\n{}".format(sub_graph))
+    print("The sub_graph object:\n{}\n".format(sub_graph))
     print("The vertex map:\n {}\n".format(sub_graph.V().elementMap().toList()))
     print("The edge map:\n {}\n".format(sub_graph.E().elementMap().toList()))
     return sub_graph

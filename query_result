@@ -1,0 +1,44 @@
+=======================QUERY_01=======================
+rrlyr  : in_degree  5 , out_degree  0, total_degree  5
+sn     : in_degree 14 , out_degree  0, total_degree 14
+unknown: in_degree  4 , out_degree  0, total_degree  4
+ztf1   : in_degree  0 , out_degree  2, total_degree  2
+ztf11  : in_degree  0 , out_degree  2, total_degree  2
+ztf12  : in_degree  1 , out_degree  3, total_degree  4
+ztf13  : in_degree  1 , out_degree  1, total_degree  2
+ztf14  : in_degree  0 , out_degree  1, total_degree  1
+ztf2   : in_degree  1 , out_degree  3, total_degree  4
+ztf21  : in_degree  0 , out_degree  1, total_degree  1
+ztf22  : in_degree  0 , out_degree  2, total_degree  2
+ztf23  : in_degree  1 , out_degree  2, total_degree  3
+ztf3   : in_degree  1 , out_degree  3, total_degree  4
+ztf4   : in_degree  1 , out_degree  1, total_degree  2
+ztf5   : in_degree  0 , out_degree  2, total_degree  2
+ztf6   : in_degree  2 , out_degree  4, total_degree  6
+ztf7   : in_degree  1 , out_degree  3, total_degree  4
+ztf8   : in_degree  1 , out_degree  1, total_degree  2
+ztf9   : in_degree  0 , out_degree  2, total_degree  2
+
+
+=======================QUERY_02=======================
+Longest chain length is 5.
+Longest Chains:
+path[ztf1, ztf2, ztf3, ztf4, sn]
+path[ztf5, ztf6, ztf7, ztf8, sn]
+path[ztf9, ztf6, ztf7, ztf8, sn]
+
+
+=======================QUERY_03=======================
+The number of vertice connected to "ztf4": 2
+
+
+=======================QUERY_04=======================
+The sub_graph object:
+graphtraversalsource[graph[]]
+
+The vertex map:
+ [{<T.id: 1>: 32792, <T.label: 4>: 'alert', 'name': 'ztf22', 'point_unknown': 'true'}, {<T.id: 1>: 61520, <T.label: 4>: 'alert', 'name': 'ztf23', 'point_unknown': 'true'}, {<T.id: 1>: 53320, <T.label: 4>: 'alert', 'name': 'ztf21', 'point_unknown': 'true'}]
+
+The edge map:
+ [{<T.id: 1>: {'@type': 'janusgraph:RelationIdentifier', '@value': {'relationId': 'lc3-paw-36d-1bgw'}}, <T.label: 4>: 'knows', <Direction.IN: 2>: {<T.id: 1>: 61520, <T.label: 4>: 'alert'}, <Direction.OUT: 3>: {<T.id: 1>: 32792, <T.label: 4>: 'alert'}}]
+
