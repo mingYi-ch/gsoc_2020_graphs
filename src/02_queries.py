@@ -7,6 +7,8 @@ from gremlin_python.driver.driver_remote_connection import DriverRemoteConnectio
 from gremlin_python.process.graph_traversal import __
 from gremlin_python.process.traversal import T
 from gremlin_python import statics
+from gremlin_python.process.strategies import *
+
 
 
 def query_01(g, alerts_unique):
@@ -74,12 +76,21 @@ def query_04(g, vertex_name = "unknown"):
     extract the subgraph containing only vertics pointing to the vertex_name
     :param g: graph traversal source object
     :param vertex_name: type: string , the name of the vertex to query
-    :return: None
+    :return: subGraph
     """
     print("{0:}QUERY_04{0:}".format(23 * '='))
-    sub_graph = g.V().has('name', vertex_name).inE().subgraph('subGraph').outV().cap('subGraph').next()
-    print("The sub_graph {}\n".format(sub_graph))
-    return
+    # find all neighbours pointing to unknown, set property 'point_unknown' to true
+    id_ = g.V().has('name', vertex_name).next()
+    neighbours = g.V(id_).in_().toList() # 'ztf23' appear twice
+    for idx in neighbours:
+        g.V(idx).property('point_unknown', 'true').next()
+    # extract the sub_graph
+    sub_graph = g.withStrategies(SubgraphStrategy(vertices= __.has('point_unknown', 'true')))
+
+    print("The sub_graph object:\n{}".format(sub_graph))
+    print("The vertex map:\n {}\n".format(sub_graph.V().elementMap().toList()))
+    print("The edge map:\n {}\n".format(sub_graph.E().elementMap().toList()))
+    return sub_graph
 
 
 if __name__ == "__main__":
