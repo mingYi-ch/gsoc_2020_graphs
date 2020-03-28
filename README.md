@@ -8,25 +8,27 @@ This repository contains my solution to the GSoC 2020: Evaluation submission.
 
 Python 3.6.5. The libraries required are `pandas`, `gremlin_python`, `numpy`
 
-### Install docker
-Docker version 2.2.0.4(43472)
+### Install and Run HBase locally
+Install [HBase](https://hbase.apache.org/book.html#quickstart), the version used in solution file is 2.2.3, default settings <br />
+Run HBase
+```
+bin/start-hbase.sh
+```
+HBase Web UI  `http://localhost:16010`
 
-### Install Gremlin Client and Server
-Run Gremlin server and client in docker container.<br />
+### Install JanusGraph Server and Connect HBase
+Install [janusgraph-full-0.5.1](https://github.com/JanusGraph/janusgraph/releases)<br />
+Run the following commands in the downloaded folder to set up HBase connection
 ```
->> docker run -it -p 8182:8182 janusgraph/janusgraph
-```
-
-Following Commands are used to open a gremlin server console in terminal, but not required for running the python code<br />
-```
->> docker container ls  
->> docker exec -it [container-id] bash  
+>> bin/janusgraph.sh start
 >> bin/gremlin.sh   
 >> :remote connect tinkerpop.server conf/remote.yaml  
 >> :remote console 
+>> JanusGraph graph = JanusGraphFactory.build().set('storage.backend', 'hbase').open()
+>> graph = JanusGraphFactory.open('conf/janusgraph-hbase-es.properties')
 ```
+Reference Instruction [JanusGraph Server](https://docs.janusgraph.org/basics/server/)
 
-Reference instruction [Gremlin\_docker\_install](https://docs.janusgraph.org/getting-started/installation/) 
 ## Proposed Solution
 `query_result` file contains the output of the queries
 
