@@ -22,7 +22,7 @@ def to_adjList(data_matrix):
             for j in range(len(row)):
                 if row[j] == 'None':
                     del row[j]
-            if not adjMat[i]: # row empty, delete
+            if len(adjMat[i]) <= 1: # no edges, delete
                 del adjMat[i]
     # print(adjMat)
     df = pd.DataFrame(adjMat)
